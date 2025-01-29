@@ -36,7 +36,7 @@ app.get("/create", (req, res) => {
 
 app.post("/issues", (req, res) => {
   const { auteur, titre, description, etat } = req.body;
-  issues.push({ auteur, titre, description, etat });
+  issues.push({ auteur, dateCreation: new Date().toLocaleDateString(), titre, description, etat: "En cours"});
   res.redirect("/issues");
 });
 
