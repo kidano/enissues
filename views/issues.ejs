@@ -11,53 +11,61 @@
 
 <body class="bg-gray-100">
   <!-- menu -->
-   <div class="p-4 bg-white shadow-md">
+  <div class="p-4 bg-white shadow-md">
     <div>
       <a href="/issues" class="text-blue-500 hover:text-blue-700">Liste des problèmes</a>
     </div>
     <div>
       <a href="/create" class="text-blue-500 hover:text-blue-700">Soumettre un nouveau problème</a>
     </div>
-   </div>
-  
-  <h1 class="mb-8 text-center text-2xl font-semibold">Liste des problèmes</h1>
-
-<!-- tableau d'affichage des problèmes -->
-  <div class="container mx-auto my-8 px-4">
- <table class="w-full table-auto max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-    <thead class="bg-black text-white">
-      <tr>
-        <th class="p-4">Auteur</th>
-        <th class="p-4">Date de Création</th>
-        <th class="p-4">Titre</th>
-        <th class="p-4">Description</th>
-        <th class="p-4">État</th>
-      </tr>
-    </thead>
-    <tbody class="bg-grey-light">
-      <% issues.forEach((issue)=> { %>
-        <tr class="border-t border-b">
-          <td class="p-4">
-            <%= issue.auteur %>
-          </td>
-          <td class="p-4">
-            <%= issue.dateCreation %>
-          </td>
-          <td class="p-4">
-            <%= issue.titre %>
-          </td>
-          <td class="p-4">
-            <%= issue.description %>
-          </td>
-          <td class="p-5">
-            <%= issue.etat %>
-          </td>
-        </tr>
-        <% }) %>
-    </tbody>
-  </table>
   </div>
- 
+
+  <h1 class="mb-8 text-center text-2xl font-semibold p-4">Liste des problèmes</h1>
+  <% if (issues.length===0) { %>
+    <div class="text-center p-6">
+      <h2 class="text-xl font-bold text-red-600">Aucun problème trouvé</h2>
+      <p class="mt-4 text-gray-700">Il n'y a actuellement aucun problème signalé.</p>
+      <a href="/create" class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        Soumettre un nouveau problème
+      </a>
+    </div>
+    <% } else { %>
+      <!-- tableau d'affichage des problèmes -->
+      <div class="container mx-auto my-8 px-4">
+        <table class="w-full table-auto max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-black text-white">
+            <tr>
+              <th class="p-4">Auteur</th>
+              <th class="p-4">Date de Création</th>
+              <th class="p-4">Titre</th>
+              <th class="p-4">Description</th>
+              <th class="p-4">État</th>
+            </tr>
+          </thead>
+          <tbody class="bg-grey-light">
+            <% issues.forEach((issue)=> { %>
+              <tr class="border-t border-b">
+                <td class="p-4">
+                  <%= issue.auteur %>
+                </td>
+                <td class="p-4">
+                  <%= issue.dateCreation %>
+                </td>
+                <td class="p-4">
+                  <%= issue.titre %>
+                </td>
+                <td class="p-4">
+                  <%= issue.description %>
+                </td>
+                <td class="p-5">
+                  <%= issue.etat %>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
 </body>
 
 </html>
