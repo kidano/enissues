@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail du problème</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Menu -->
+  <div class="p-4 bg-white shadow-md">
+    <div>
+      <a href="/issues" class="text-blue-500 hover:text-blue-700">Liste des problèmes</a>
+    </div>
+    <div>
+      <a href="/create" class="text-blue-500 hover:text-blue-700">Soumettre un nouveau problème</a>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container mx-auto my-8 max-w-2xl">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="mb-6">
+        <a href="/issues" class="text-blue-500 hover:text-blue-700">
+          ← Retour à la liste
+        </a>
+      </div>
+
+      <h1 class="text-3xl font-bold mb-6"><%= issue.titre %></h1>
+
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div>
+          <p class="text-gray-600">Auteur</p>
+          <p class="font-semibold"><%= issue.auteur %></p>
+        </div>
+        <div>
+          <p class="text-gray-600">État</p>
+          <p class="font-semibold"><%= issue.etat %></p>
+        </div>
+        <div>
+          <p class="text-gray-600">Date de création</p>
+          <p class="font-semibold"><%= issue.dateCreation %></p>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h2 class="text-xl font-semibold mb-3">Description</h2>
+        <p class="text-gray-700 whitespace-pre-wrap"><%= issue.description %></p>
+      </div>
+
+      <div class="mt-8 flex justify-between items-center">
+        <form action="/issues/delete/<%= issue.id %>" method="POST">
+          <button type="submit" 
+                  class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+            Supprimer
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
