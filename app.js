@@ -37,6 +37,17 @@ app.get("/create", (req, res) => {
   res.render("create", { formData: {}, errors: [] });
 });
 
+app.get("/issues/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const issue = issues.find(issue => issue.id === id);
+  
+  if (!issue) {
+    return res.status(404).render("404");
+  }
+  
+  res.render("detail", { issue });
+});
+
 //créer une nouvelle issue
 app.post(
   "/issues",
